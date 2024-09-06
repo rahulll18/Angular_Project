@@ -1,0 +1,46 @@
+<div>One way data binding :</div>
+<h6>{{ companyName }}</h6>
+
+<div>
+  <label for="search">2 Way data binding : </label>
+  <input
+    type="text"
+    class="border border-black"
+    [(ngModel)]="baseLocation"
+    (input)="display()"
+    id="search"
+  />
+</div>
+
+<div>
+  <label for="event">Event Binding : </label>
+  <input
+    type="checkbox"
+    id="event"
+    [(ngModel)]="initalStatus"
+    (change)="display()"
+  />
+  <b class="ml-3">{{ initalStatus }}</b>
+</div>
+
+<div>
+  <label for="attribute">Attribute Binding : </label>
+  <input [type]="inputType" class="border border-black" id="attribute" />
+</div>
+
+<div>
+  <h2>Image</h2>
+  <img
+    [src]="bindingImage.url"
+    [height]="bindingImage.height"
+    [width]="bindingImage.width"
+    [alt]="bindingImage.name"
+  />
+</div>
+
+<div>
+  <h1>Template Reference Variable</h1>
+  <label for="company">Enter the company name :- </label>
+  <input type="text" class="border border-black" #code id="company" />
+  <button (click)="setCode(code)">send</button>
+</div>

@@ -1,0 +1,25 @@
+.navbar{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 0px 7px 25px 3px rgb(214, 164, 214);
+}
+.navbar p{
+    font-weight: bolder;
+    font-size: large;
+}
+.btn{
+    padding: 3px 15px; 
+    background-color: rgb(74, 166, 197);
+    color: white;
+    border-radius: 10px;
+}
+.btn :hover{
+    background-color: rgb(89, 166, 192);
+    cursor: pointer;
+}
+.heading{
+    color: purple;
+    font-size: x-large;
+}
