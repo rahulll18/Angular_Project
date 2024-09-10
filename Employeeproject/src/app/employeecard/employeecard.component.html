@@ -1,0 +1,40 @@
+<div>
+  <img
+    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlJqngNJ42uWE0Zy6S6rHTuW8pn6p-cuogyQ&s"
+    alt="{{ employee.empName }}"
+    class="w-[200px] mx-auto h-48 m-2 object-cover"
+  />
+  <div class="p-4">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-2">
+      {{ employee.empName }}
+    </h2>
+    <p class="text-gray-600"><strong>ID:</strong> {{ employee._id }}</p>
+    <p class="text-gray-600">
+      <strong>Department:</strong> {{ employee.deptCode }}
+    </p>
+    <p class="text-gray-600">
+      <strong>Salary:</strong> {{ employee.basicSalary }}
+    </p>
+    <p class="text-gray-600">
+      <strong>Experience:</strong> {{ employee.experience }} years
+    </p>
+    <p class="text-gray-600"><strong>Email:</strong> {{ employee.emailId }}</p>
+    <p class="text-gray-600">
+      <strong>Joining Date:</strong> {{ employee.joiningDate | date }}
+    </p>
+    <div class="mt-3">
+      <button
+        type="submit"
+        class="rounded-lg border border-black py-1 px-3 ml-4"
+      >
+        Edit
+      </button>
+      <button
+        type="submit"
+        class="bg-red-600 text-white rounded-lg py-1 px-3 ml-20"
+      >
+        Delete
+      </button>
+    </div>
+  </div>
+</div>
