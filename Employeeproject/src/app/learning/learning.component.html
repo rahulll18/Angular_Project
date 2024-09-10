@@ -2,7 +2,7 @@
 <h6>{{ companyName }}</h6>
 
 <div>
-  <label for="search">2 Way data binding : </label>
+  <label>2 Way data binding : </label>
   <input
     type="text"
     class="border border-black"
@@ -21,6 +21,7 @@
     (change)="display()"
   />
   <b class="ml-3">{{ initalStatus }}</b>
+  <b class="ml-11">{{ className.companyDirector }}</b>
 </div>
 
 <div>
@@ -43,4 +44,104 @@
   <label for="company">Enter the company name :- </label>
   <input type="text" class="border border-black" #code id="company" />
   <button (click)="setCode(code)">send</button>
+</div>
+
+<div>
+  <h4>*ngIf-else</h4>
+  <div>
+    <label for="location">Base Location :</label>
+    <input type="text" [(ngModel)]="baseLocation" title="location" list="bl" />
+  </div>
+  <datalist id="bl">
+    <option value="Dadar">DADAR</option>
+    <option value="Rabale">RABALE</option>
+    <option value="Parel">PAREL</option>
+  </datalist>
+  <address *ngIf="baseLocation.toLowerCase() == 'rabale'; else elsepart1">
+    <p>
+      Sigma IT Park, Unit No. 501, TTC Industrial Area, Rabale, Navi Mumbai,
+      Maharashtra 400701
+    </p>
+  </address>
+  <ng-template #elsepart1>
+    <address *ngIf="baseLocation.toLowerCase() == 'dadar'; else elsepart2">
+      <p>dadar location address</p>
+    </address>
+    <ng-template #elsepart2>
+      <address>
+        <p>parel location address</p>
+      </address>
+    </ng-template>
+  </ng-template>
+</div>
+
+<div>
+  <h4>ng switch</h4>
+  <label for="location">Base Location :</label>
+  <input type="text" [(ngModel)]="baseLocation" title="location" list="bl" />
+  <datalist id="bl">
+    <option value="Dadar">DADAR</option>
+    <option value="Rabale">RABALE</option>
+    <option value="Parel">PAREL</option>
+  </datalist>
+</div>
+
+<div>
+  <h4>ngSwitch, *ngSwitchCase, *ngSwitchDefault</h4>
+  <div>
+    <label for="location">Base Location :</label>
+    <input
+      class="border border-black"
+      type="text"
+      [(ngModel)]="baseLocation"
+      title="location"
+      list="bl"
+    />
+  </div>
+  <section [ngSwitch]="baseLocation.toLowerCase()">
+    <address *ngSwitchCase="'rabale'">
+      <p>
+        Sigma IT Park, Unit No. 501, TTC Industrial Area, Rabale, Navi Mumbai,
+        Maharashtra 400701
+      </p>
+    </address>
+    <address *ngSwitchCase="'dadar'">
+      <p>
+        The Ruby Tower, Senapati Bapat Marg, Dadar West, Mumbai, Maharashtra
+        400028
+      </p>
+    </address>
+    <address *ngSwitchCase="'parel'">
+      <p>
+        9th floor, Business arcade, Sayani Rd, Parel Bus Depot, Dighe Nagar,
+        Prabhadevi, Mumbai, Maharashtra 400025
+      </p>
+    </address>
+    <div *ngSwitchDefault>
+      <p class="text-danger text-bold">NO ADDRESS FOUND</p>
+    </div>
+  </section>
+</div>
+<div>
+  <h3>ng For</h3>
+  <ol>
+    <li *ngFor="let loc of companyNames">{{ loc }}</li>
+  </ol>
+
+  <table>
+    <tr *ngFor="let loc of companyNames; let i = index">
+      <td>{{ loc }}</td>
+      <td>{{ i }}</td>
+    </tr>
+  </table>
+
+
+  <section class="flex flex-wrap">
+      <div *ngFor="let office of offices" class="w-[200px] h-[150px] border border-black m-2 flex flex-col justify-evenly items-center">
+        <h3>{{office.location}}</h3>
+        <address>
+          {{office.address}}
+        </address>
+      </div>
+  </section>
 </div>

@@ -7,9 +7,10 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LearningComponent } from './learning/learning.component';
 import { FormsModule } from '@angular/forms';
+import { EmployeesComponent } from './employees/employees.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, LearningComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, LearningComponent, EmployeesComponent],
   imports: [BrowserModule, AppRoutingModule , FormsModule],
   providers: [],
   bootstrap: [AppComponent],
