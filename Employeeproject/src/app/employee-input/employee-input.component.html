@@ -1,0 +1,100 @@
+<section>
+  <h4 class="text-center m-2">EMPLOYEE FORM</h4>
+  <div class="flex justify-center">
+    <form
+      class="w-50 border border-black p-3 bg-secondary"
+      [formGroup]="employeeForm"
+      (submit)=collectData()
+    >
+      <div class="mb-3">
+        <label for="_id" class="form-label">ID : </label>
+        <input
+          type="number"
+          class="form-control border border-black"
+          title="_id"
+          formControlName="_id"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="empName" class="form-label">NAME : </label>
+        <input
+          type="text"
+          class="form-control border border-black"
+          title="empName"
+          formControlName="empName"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="basicSalary" class="form-label">SALARY : </label>
+        <input
+          type="number"
+          class="form-control border border-black"
+          title="basicSalary"
+          formControlName="basicSalary"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="experience" class="form-label"
+          >EXPERIENCE (in years) :
+        </label>
+        <input
+          type="number"
+          class="form-control border border-black"
+          title="experience"
+          formControlName="experience"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="emailId" class="form-label">EMAIL ID : </label>
+        <input
+          type="email"
+          class="form-control border border-black"
+          title="emailId"
+          formControlName="emailId"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="dept_code" class="form-label">DEPARTMENT CODE : </label>
+        <select title="dept_code">
+          <option *ngFor="let dcode of departments | orderby">
+            {{ dcode }}
+          </option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="joiningDate" class="form-label">JOINING DATE</label>
+        <input
+          type="datetime-local"
+          class="form-control"
+          title="joiningDate"
+          formControlName="joiningDate"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="secrete_code" class="form-label">SECRETE CODE : </label>
+        <input
+          type="password"
+          class="form-control border border-black"
+          title="secrete_code"
+          formControlName="secrete_code"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="c_secrete_code" class="form-label"
+          >CONFIRM SECRETE CODE :
+        </label>
+        <input
+          type="password"
+          class="form-control border border-black"
+          title="c_secrete_code"
+        />
+      </div>
+      <button type="submit" class="border border-black px-2 py-1 bg-violet-400">
+        Submit
+      </button>
+      <button type="reset" class="border border-black px-2 py-1 bg-violet-400">
+        Reset
+      </button>
+    </form>
+  </div>
+</section>

@@ -1,4 +1,8 @@
-<div>One way data binding :</div>
+<div class="text-3xl font-bold">{{ slogan }}</div>
+
+<div [ngStyle]="{ color: 'red', backgroundColor: 'yellow' }">
+  One way data binding :
+</div>
 <h6>{{ companyName }}</h6>
 
 <div>
@@ -13,7 +17,7 @@
 </div>
 
 <div>
-  <label for="event">Event Binding : </label>
+  <label for="event" [ngStyle]="styleObject">Event Binding : </label>
   <input
     type="checkbox"
     id="event"
@@ -125,24 +129,59 @@
 <div>
   <h3>ng For</h3>
   <ol>
-    <li *ngFor="let loc of companyNames">{{ loc }}</li>
+    <li *ngFor="let loc of companyNames">{{ loc | lowercase }}</li>
   </ol>
 
   <table>
     <tr *ngFor="let loc of companyNames; let i = index">
-      <td>{{ loc }}</td>
+      <td>{{ loc | uppercase }}</td>
       <td>{{ i }}</td>
     </tr>
   </table>
 
-
   <section class="flex flex-wrap">
-      <div *ngFor="let office of offices" class="w-[200px] h-[150px] border border-black m-2 flex flex-col justify-evenly items-center">
-        <h3>{{office.location}}</h3>
-        <address>
-          {{office.address}}
-        </address>
-      </div>
+    <div
+      *ngFor="let office of offices"
+      class="w-[200px] h-[150px] border border-black m-2 flex flex-col justify-evenly items-center"
+    >
+      <h3>{{ office.location }}</h3>
+      <address>
+        {{ office.address }}
+      </address>
+    </div>
   </section>
 </div>
-<app-testchild></app-testchild>
+
+<article>
+  <h4>Pipes</h4>
+  <thead>
+    <tr>
+      <th>
+        <select name="currencyCode" [(ngModel)]="currencyCode">
+          <option
+            *ngFor="let currencyCode of currencyCodes"
+            [value]="currencyCode.code"
+          >
+            {{ currencyCode.country }}
+          </option>
+        </select>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let salary of salaries">
+      <td>{{ salary }}</td>
+      <td>{{ salary | currency : currencyCode }}</td>
+      <td>{{ salary | currency : currencyCode }}</td>
+    </tr>
+  </tbody>
+</article>
+
+<table>
+  <tr *ngFor="let date of joiningDates | orderby : 'asec'">
+    <td >
+      {{date}}
+    </td>
+  </tr>
+</table>
+<app-testchild (emitter)="slogan = $event"></app-testchild>

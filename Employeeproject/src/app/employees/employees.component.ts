@@ -7,6 +7,7 @@ import { Employee } from '../customclasses/employee';
   styleUrl: './employees.component.css',
 })
 export class EmployeesComponent {
+  // cardcolor= 'gray';
   employees: Employee[] = [
     new Employee(1, 'John Doe', 'IT', 50000, 5, 'john.doe@example.com', 'john.jpg', new Date('2019-01-15')),
     new Employee(2, 'Jane Smith', 'HR', 60000, 7, 'jane.smith@example.com', 'jane.jpg', new Date('2018-05-23')),

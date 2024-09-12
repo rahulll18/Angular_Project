@@ -22,8 +22,43 @@ export class LearningComponent implements OnChanges, OnDestroy, OnInit {
 
   companyNames = ['Dadar', 'Parel', 'Rabale', 'Pune', 'Noida'];
 
+  joiningDates = [
+    new Date('July 5, 2018'),
+    new Date('July 4, 2018'),
+    new Date('July 6, 2019'),
+  ];
+
+  currencyCode = 'INR';
+  currencyCodes = [
+    {
+      country: 'India',
+      code: 'IND',
+    },
+    {
+      country: 'America',
+      code: 'USD',
+    },
+    {
+      country: 'Europe',
+      code: 'EUR',
+    },
+    {
+      country: 'Japan',
+      code: 'JPY',
+    },
+  ];
+
   static companyDirector = 'Mr. John';
   className = LearningComponent;
+
+  slogan = '';
+
+  styleObject = {
+    backgroundColor: 'blue',
+    textDecoration: 'none',
+  };
+
+  salaries = [5555.566, 32323.43546, 343434.555];
 
   offices = [
     {
@@ -64,6 +99,8 @@ export class LearningComponent implements OnChanges, OnDestroy, OnInit {
       this.companyName1 = this.companyName2;
       this.companyName2 = this.companyName; // we are changing model
     }, 3000);
+
+    console.log(this.joiningDates);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
