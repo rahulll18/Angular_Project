@@ -4,7 +4,7 @@
     <form
       class="w-50 border border-black p-3 bg-secondary"
       [formGroup]="employeeForm"
-      (submit)=collectData()
+      (submit)="collectData()"
     >
       <div class="mb-3">
         <label for="_id" class="form-label">ID : </label>
@@ -14,6 +14,9 @@
           title="_id"
           formControlName="_id"
         />
+        <div class="text-sm text-red-500" *ngIf="_id?.touched">
+          <div *ngIf="_id?.hasError('required')">ID is required</div>
+        </div>
       </div>
       <div class="mb-3">
         <label for="empName" class="form-label">NAME : </label>
@@ -23,6 +26,15 @@
           title="empName"
           formControlName="empName"
         />
+        <div class="text-sm text-red-500" *ngIf="empName?.touched">
+          <div *ngIf="empName?.hasError('required')">
+            Employee Name is required
+          </div>
+          <div *ngIf="empName?.hasError('pattern')">Valid Name is required</div>
+          <div *ngIf="empName?.hasError('minLength')">
+            Minimum 2 Character is required
+          </div>
+        </div>
       </div>
       <div class="mb-3">
         <label for="basicSalary" class="form-label">SALARY : </label>
@@ -32,6 +44,14 @@
           title="basicSalary"
           formControlName="basicSalary"
         />
+        <div class="text-sm text-red-500" *ngIf="basicSalary?.touched">
+          <div *ngIf="basicSalary?.hasError('required')">
+            Salary is required
+          </div>
+          <div *ngIf="basicSalary?.hasError('min')">
+            Please enter valid salary
+          </div>
+        </div>
       </div>
       <div class="mb-3">
         <label for="experience" class="form-label"
@@ -43,6 +63,17 @@
           title="experience"
           formControlName="experience"
         />
+        <div class="text-sm text-red-500" *ngIf="experience?.touched">
+          <div *ngIf="experience?.hasError('required')">
+            Experience is required
+          </div>
+          <div *ngIf="experience?.hasError('min')">
+            Valid Experience is required
+          </div>
+          <div *ngIf="experience?.hasError('max')">
+            Maximum 85 Experience is allowed
+          </div>
+        </div>
       </div>
       <div class="mb-3">
         <label for="emailId" class="form-label">EMAIL ID : </label>
@@ -52,14 +83,26 @@
           title="emailId"
           formControlName="emailId"
         />
+        <div class="text-sm text-red-500" *ngIf="emailId?.touched">
+          <div *ngIf="emailId?.hasError('required')">Email Id is required</div>
+        </div>
+        <div *ngIf="emailId?.hasError('email')">Invalid Email</div>
+        <div *ngIf="emailId?.hasError('mailaccount')">
+          Only gmail accounts allowed
+        </div>
       </div>
       <div class="mb-3">
-        <label for="dept_code" class="form-label">DEPARTMENT CODE : </label>
-        <select title="dept_code">
-          <option *ngFor="let dcode of departments | orderby">
+        <label for="deptCode" class="form-label">DEPARTMENT CODE : </label>
+        <select title="deptCode">
+          <option [value]="dcode" *ngFor="let dcode of departments | orderby">
             {{ dcode }}
           </option>
         </select>
+        <div class="text-sm text-red-600" *ngIf="deptCode?.touched">
+          <div *ngIf="deptCode?.hasError('required')">
+            Please select Department
+          </div>
+        </div>
       </div>
       <div class="mb-3">
         <label for="joiningDate" class="form-label">JOINING DATE</label>
@@ -78,6 +121,17 @@
           title="secrete_code"
           formControlName="secrete_code"
         />
+        <div class="text-sm text-red-600" *ngIf="secrete_code?.touched">
+          <div *ngIf="secrete_code?.hasError('required')">
+            Please Enter Secrete code
+          </div>
+          <div *ngIf="secrete_code?.hasError('minLength')">
+            Please Enter Valid Secrete code
+          </div>
+          <div *ngIf="secrete_code?.hasError('maxLength')">
+            Please Enter Valid Secrete code
+          </div>
+        </div>
       </div>
       <div class="mb-3">
         <label for="c_secrete_code" class="form-label"
@@ -89,7 +143,11 @@
           title="c_secrete_code"
         />
       </div>
-      <button type="submit" class="border border-black px-2 py-1 bg-violet-400">
+      <button
+        type="submit"
+        class="border border-black px-2 py-1 bg-violet-400"
+        [disabled]="employeeForm.invalid"
+      >
         Submit
       </button>
       <button type="reset" class="border border-black px-2 py-1 bg-violet-400">

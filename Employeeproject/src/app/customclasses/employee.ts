@@ -6,7 +6,7 @@ export class Employee {
   experience: number;
   emailId: string;
   employee_pic: any;
-  joiningDate: Date;
+  joiningDate: string;
   // secrete_code: string;
 
   constructor(
@@ -17,7 +17,7 @@ export class Employee {
     experience: number = 0,
     emailId: string = '',
     employee_pic: any = '',
-    joiningDate: Date = new Date(),
+    joiningDate: string = Employee.getDateTimeLocal(new Date()),
     public secrete_code = '123'
   ) {
     this._id = _id;
@@ -29,5 +29,11 @@ export class Employee {
     this.employee_pic = employee_pic;
     this.joiningDate = joiningDate;
     // this.secrete_code = secrete_code;
+  }
+
+  static getDateTimeLocal(d: Date) {
+    return new Date(d.getTime() - d.getTimezoneOffset() * 60000)
+      .toISOString()
+      .slice(0, -1);
   }
 }

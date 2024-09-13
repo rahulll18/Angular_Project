@@ -12,9 +12,10 @@ import { EmployeecardComponent } from './employeecard/employeecard.component';
 import { TestchildComponent } from './testchild/testchild.component';
 import { OrderbyPipe } from './custompipes/orderby.pipe';
 import { EmployeeInputComponent } from './employee-input/employee-input.component';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, LearningComponent, EmployeesComponent, EmployeecardComponent, TestchildComponent, OrderbyPipe, EmployeeInputComponent],
+  declarations: [AppComponent, HeaderComponent, FooterComponent, LearningComponent, EmployeesComponent, EmployeecardComponent, TestchildComponent, OrderbyPipe, EmployeeInputComponent, AdminLoginComponent],
   imports: [BrowserModule, AppRoutingModule , FormsModule , ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],

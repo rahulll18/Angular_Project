@@ -1,0 +1,39 @@
+<div class="h-screen bg-gray-200 flex items-center justify-center">
+  <div class="w-full max-w-md bg-white shadow-lg rounded-lg p-8">
+    <h2 class="text-2xl font-bold text-center mb-6 text-purple-custom">
+      Admin Login
+    </h2>
+    <form #loginform="ngForm" (submit)="collectData(loginform)">
+      <div class="mb-4">
+        <label for="username" class="block text-gray-700 font-semibold mb-2"
+          >Username</label
+        >
+        <input
+          type="text"
+          title="username"
+          name="username"
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-custom"
+          [(ngModel)]="admin.username"
+        />
+      </div>
+      <div class="mb-6">
+        <label for="password" class="block text-gray-700 font-semibold mb-2"
+          >Password</label
+        >
+        <input
+          type="password"
+          title="username"
+          name="password"
+          class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-custom"
+          [(ngModel)]="admin.password"
+        />
+      </div>
+      <button
+        type="submit"
+        class="w-full py-2 bg-purple-custom text-black shadow-lg shadow-black font-bold rounded-md bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-custom"
+      >
+        Log In
+      </button>
+    </form>
+  </div>
+</div>
