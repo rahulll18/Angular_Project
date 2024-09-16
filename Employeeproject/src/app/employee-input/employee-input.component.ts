@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Employee } from '../customclasses/employee';
 import { CustomValidators } from '../customclasses/custom-validators';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-employee-input',
@@ -13,7 +14,15 @@ export class EmployeeInputComponent {
 
   employeeForm: FormGroup;
   employee = new Employee();
-  constructor() {
+
+  constructor(private activeRoute: ActivatedRoute) {
+    console.log(activeRoute);
+
+    const routeParam = activeRoute.snapshot.paramMap.get('_id');
+    if (routeParam != null) {
+      let _id = parseInt(routeParam);
+    }
+
     this.employeeForm = new FormGroup(
       {
         _id: new FormControl(this.employee._id, [Validators.required]),

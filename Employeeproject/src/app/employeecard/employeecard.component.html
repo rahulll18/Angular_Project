@@ -6,14 +6,14 @@
   />
   <div class="p-4">
     <h2 class="text-2xl font-semibold text-gray-800 mb-2">
-      {{ employee.empName  | titlecase}}
+      {{ employee.empName | titlecase }}
     </h2>
     <p class="text-gray-600"><strong>ID:</strong> {{ employee._id }}</p>
     <p class="text-gray-600">
-      <strong>Department:</strong> {{ employee.deptCode | uppercase }} 
+      <strong>Department:</strong> {{ employee.deptCode | uppercase }}
     </p>
     <p class="text-gray-600">
-      <strong>Salary:</strong> {{ employee.basicSalary | currency : 'INR'}}
+      <strong>Salary:</strong> {{ employee.basicSalary | currency : "INR" }}
     </p>
     <p class="text-gray-600">
       <strong>Experience:</strong> {{ employee.experience }} years
@@ -26,6 +26,7 @@
       <button
         type="submit"
         class="rounded-lg border border-black py-1 px-3 ml-4"
+        [routerLink]="['/editEmployee', employee._id]"
       >
         Edit
       </button>
