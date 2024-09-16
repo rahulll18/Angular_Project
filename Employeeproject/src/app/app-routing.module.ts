@@ -6,45 +6,47 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { ViewnotfoundComponent } from './viewnotfound/viewnotfound.component';
 import { HomeComponent } from './home/home.component';
 import { LearningComponent } from './learning/learning.component';
+import { authGuard } from './guards/Authguard';
 
 const routes: Routes = [
   {
-    path:"",
-    redirectTo:'home',
-    pathMatch:'full'
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
   },
   {
-    path:'home',
-    component:HomeComponent
+    path: 'home',
+    component: HomeComponent,
   },
   {
-    path:'learning',
-    component:LearningComponent
+    path: 'learning',
+    component: LearningComponent,
   },
   {
-    path:'adminLogin',
-    component:AdminLoginComponent
+    path: 'adminLogin',
+    component: AdminLoginComponent,
   },
   {
-    path:'addEmployee',
-    component:EmployeeInputComponent
+    path: 'addEmployee',
+    component: EmployeeInputComponent,
+    canActivate: [authGuard],
   },
   {
-    path:'editEmployee/:_id',
-    component:EmployeeInputComponent
+    path: 'editEmployee/:_id',
+    component: EmployeeInputComponent,
   },
   {
-    path:'showEmployees',
-    component:EmployeesComponent
+    path: 'showEmployees',
+    component: EmployeesComponent,
   },
   {
-    path:"**",
-    component:ViewnotfoundComponent
-  }
+    path: '**',
+    component: ViewnotfoundComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
