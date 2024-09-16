@@ -7,6 +7,7 @@ import { ViewnotfoundComponent } from './viewnotfound/viewnotfound.component';
 import { HomeComponent } from './home/home.component';
 import { LearningComponent } from './learning/learning.component';
 import { authGuard } from './guards/Authguard';
+import { leaveView } from './guards/leaveview';
 
 const routes: Routes = [
   {
