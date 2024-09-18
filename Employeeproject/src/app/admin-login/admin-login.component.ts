@@ -16,7 +16,7 @@ export class AdminLoginComponent {
     password: 'neo123',
   };
 
-  constructor(private account: UserAccountService , public router : Router) {}
+  constructor(private account: UserAccountService, public router: Router) {}
 
   collectData(loginform: any) {
     this.admin = loginform.value;
@@ -27,7 +27,7 @@ export class AdminLoginComponent {
 
     if (this.flag === true) {
       window.alert('Admin Log in successfully');
-      this.router.navigate(["home"])
+      this.router.navigate(['home']);
     } else {
       this.errormessage = 'Incorrect username and password';
     }
