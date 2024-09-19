@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Employee } from '../customclasses/employee';
 import { CustomValidators } from '../customclasses/custom-validators';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { EmployeeCRUDService } from '../customservices/employee-crud.service';
 
 @Component({
   selector: 'app-employee-input',
@@ -15,12 +16,17 @@ export class EmployeeInputComponent {
   employeeForm: FormGroup;
   employee = new Employee();
 
-  constructor(private activeRoute: ActivatedRoute) {
+  constructor(
+    private activeRoute: ActivatedRoute,
+    private empcrud: EmployeeCRUDService,
+    private router: Router
+  ) {
     console.log(activeRoute);
 
     const routeParam = activeRoute.snapshot.paramMap.get('_id');
     if (routeParam != null) {
       let _id = parseInt(routeParam);
+      this.getEmp(_id);
     }
 
     this.employeeForm = new FormGroup(
@@ -61,6 +67,23 @@ export class EmployeeInputComponent {
     );
   }
 
+  getEmp(_id: number) {
+    const obs = this.empcrud.getEmployeeById(_id);
+    obs.subscribe({
+      next: (emp) => {
+        let jd = emp.joiningDate;
+        emp.joiningDate = jd.slice(0, jd.length - 5);
+        console.log(emp);
+        //this.employeeForm.setValue(emp); // setValue : strict
+        this.employeeForm.patchValue(emp); // :not strict
+      },
+      error: (err) => {
+        console.log(err);
+        window.alert('something went wrong while searching...');
+      },
+    });
+  }
+
   get empId() {
     return this.employeeForm.get('_id');
   }
@@ -91,12 +114,33 @@ export class EmployeeInputComponent {
   }
 
   collectData() {
-    console.log(this.employeeForm);
     console.log(this.employeeForm.value);
-    //i want data of only id
-    console.log(this.employeeForm.value._id);
-    //i want data of only id via FormControl
-    //console.log(this.employeeForm.controls._id.value.controls._id.value);
-    console.log(this.emailId?.value);
+    this.employee = this.employeeForm.value;
+    if (this.activeRoute.snapshot.routeConfig?.path?.includes('addEmployee'))
+      this.addEmp();
+    else {
+      this.updateEmp();
+    }
+  }
+
+  addEmp() {
+    const obs = this.empcrud.addEmployee(this.employee);
+    obs.subscribe({
+      next: (emp) => {
+        //console.log(emp);
+        window.alert(`Employee with id ${emp._id} added successfully....`);
+        this.router.navigate(['/showEmployees']);
+      },
+      error: (err) => {
+        console.log(err);
+        window.alert('something went wrong while adding...');
+      },
+    });
+  }
+
+  updateEmp() {}
+
+  test() {
+    console.log(this.basicSalary?.errors);
   }
 }

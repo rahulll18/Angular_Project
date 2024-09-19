@@ -30,8 +30,8 @@ const routes: Routes = [
   {
     path: 'addEmployee',
     component: EmployeeInputComponent,
-    canActivate: [authGuard],
-    canDeactivate: [leaveView],
+    // canActivate: [authGuard],
+    // canDeactivate: [leaveView],
   },
   {
     path: 'editEmployee/:_id',

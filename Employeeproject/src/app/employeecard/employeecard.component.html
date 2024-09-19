@@ -31,10 +31,11 @@
         Edit
       </button>
       <button
-        type="submit"
-        class="bg-red-600 text-white rounded-lg py-1 px-3 ml-20"
+        type="button"
+        class="rounded-lg border border-black py-1 px-3 ml-4"
+        (click)="emitter.emit(employee._id)"
       >
-        Delete
+        DELETE
       </button>
     </div>
   </div>
