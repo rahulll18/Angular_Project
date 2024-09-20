@@ -63,42 +63,71 @@ export class EmployeesComponent {
   // ];
 
   employees: Employee[] = [];
+  allEmployees: Employee[] = [];
+  errorMessage = '';
 
-  constructor(private empcrud: EmployeeCRUDService) {
-  }
+  constructor(private empcrud: EmployeeCRUDService) {}
 
   ngOnInit(): void {
     this.getEmps();
   }
-  
-  getEmps(){
-    const obs=this.empcrud.getAllEmployees();
+
+  getEmps() {
+    const obs = this.empcrud.getAllEmployees();
     obs.subscribe({
-      next:(emps)=>{
+      next: (emps) => {
         //console.log(emps);
-        this.employees=emps;
+        this.employees = emps;
+        this.allEmployees = this.employees;
       },
-      error: (err)=>{
-        console.log(err); 
-        window.alert("something went wrong getting employees...")
-      }
+      error: (err) => {
+        console.log(err);
+        window.alert('something went wrong getting employees...');
+      },
     });
   }
-  deleteEmployee(_id:number){
-    const ans=confirm("Do you really want to delete?")
-    if(ans){
-      const obs=this.empcrud.deleteEmployeeById(_id)
+  deleteEmployee(_id: number) {
+    const ans = confirm('Do you really want to delete?');
+    if (ans) {
+      const obs = this.empcrud.deleteEmployeeById(_id);
       obs.subscribe({
-        next:(obj)=>{
+        next: (obj) => {
           console.log(obj);
-          window.alert("Employe deleted successfully....");
+          window.alert('Employe deleted successfully....');
           this.getEmps();
         },
-        error: (err)=>{
-          console.log(err); 
-          window.alert("something went wrong deleting employee...")
-        }
+        error: (err) => {
+          console.log(err);
+          window.alert('something went wrong deleting employee...');
+        },
       });
+    }
+  }
+
+  searchEmployee(emp_name: string) {
+    console.log('search query :' + emp_name);
+    if (emp_name !== '') {
+      const obs = this.empcrud.getEmployeesByName(emp_name);
+
+      obs.subscribe({
+        next: (emps) => {
+          if (emps.length > 0) {
+            console.log(emps);
+            this.employees = emps;
+          } else {
+            this.errorMessage = 'NOT FOUND';
+          }
+        },
+
+        error: (err) => {
+          console.log(err);
+
+          window.alert('something went wrong searching employee...');
+        },
+      });
+    } else {
+      this.errorMessage="";
+      this.employees = this.allEmployees;
     }
   }
 }

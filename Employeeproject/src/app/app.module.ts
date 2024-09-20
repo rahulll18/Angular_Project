@@ -16,11 +16,33 @@ import { AdminLoginComponent } from './admin-login/admin-login.component';
 import { HomeComponent } from './home/home.component';
 import { ViewnotfoundComponent } from './viewnotfound/viewnotfound.component';
 import { provideHttpClient } from '@angular/common/http';
-
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatButtonModule } from '@angular/material/button';
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent, LearningComponent, EmployeesComponent, EmployeecardComponent, TestchildComponent, OrderbyPipe, EmployeeInputComponent, AdminLoginComponent, HomeComponent, ViewnotfoundComponent],
-  imports: [BrowserModule, AppRoutingModule , FormsModule , ReactiveFormsModule],
-  providers: [provideHttpClient()],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    LearningComponent,
+    EmployeesComponent,
+    EmployeecardComponent,
+    TestchildComponent,
+    OrderbyPipe,
+    EmployeeInputComponent,
+    AdminLoginComponent,
+    HomeComponent,
+    ViewnotfoundComponent,
+    FileUploadComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+  ],
+  providers: [provideHttpClient(), provideAnimationsAsync()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

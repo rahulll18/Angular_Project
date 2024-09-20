@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { LearningComponent } from './learning/learning.component';
 import { authGuard } from './guards/Authguard';
 import { leaveView } from './guards/leaveview';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,10 @@ const routes: Routes = [
   {
     path: 'showEmployees',
     component: EmployeesComponent,
+  },
+  {
+    path: 'editPic/:_id',
+    component: FileUploadComponent,
   },
   {
     path: '**',

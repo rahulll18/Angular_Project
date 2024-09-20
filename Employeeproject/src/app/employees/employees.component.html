@@ -1,3 +1,11 @@
+<div>
+
+  <label>Name to Search Employee:</label>
+
+  <input type="text" title="emp_name" (keyup)="searchEmployee(nameNode.value)" #nameNode>
+  <p>{{errorMessage}}</p>
+
+</div>
 <section class="flex flex-wrap gap-9 justify-center p-4">
   <div
     *ngFor="let employee of employees"
