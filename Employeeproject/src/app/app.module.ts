@@ -19,6 +19,10 @@ import { provideHttpClient } from '@angular/common/http';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatButtonModule } from '@angular/material/button';
+import { StoreModule } from '@ngrx/store';
+import { counterReducer } from './ngrx/counter.reducres';
+import { userReducer } from './ngrx/user.reducres';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +45,7 @@ import { MatButtonModule } from '@angular/material/button';
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
+    StoreModule.forRoot({ counter: counterReducer, user: userReducer }),
   ],
   providers: [provideHttpClient(), provideAnimationsAsync()],
   bootstrap: [AppComponent],

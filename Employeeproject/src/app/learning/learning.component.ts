@@ -6,6 +6,14 @@ import {
   SimpleChanges,
 } from '@angular/core';
 
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import {
+  increment,
+  decrement,
+  incrementByAmount,
+} from '../ngrx/counter.actions';
+
 @Component({
   selector: 'app-learning',
   templateUrl: './learning.component.html',
@@ -93,14 +101,30 @@ export class LearningComponent implements OnChanges, OnDestroy, OnInit {
     },
   ];
 
-  constructor() {
+  counter3 = 0;
+  counter3$: Observable<number>;
+  constructor(private store: Store<{ counter: number }>) {
     setInterval(() => {
       this.companyName = this.companyName1; // company
       this.companyName1 = this.companyName2;
       this.companyName2 = this.companyName; // we are changing model
     }, 3000);
 
+    this.counter3$ = this.store.select('counter');
+
     console.log(this.joiningDates);
+  }
+
+  increment() {
+    this.store.dispatch(increment());
+  }
+
+  decrement() {
+    this.store.dispatch(decrement());
+  }
+
+  incrementByAmount() {
+    this.store.dispatch(incrementByAmount(4));
   }
 
   ngOnChanges(changes: SimpleChanges): void {

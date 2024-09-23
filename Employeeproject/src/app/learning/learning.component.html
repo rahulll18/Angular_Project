@@ -1,5 +1,13 @@
 <div class="text-3xl font-bold">{{ slogan }}</div>
 
+<section>
+  <h5>Counter from Store service</h5>
+  <p>{{ counter3$ | async }}</p>
+  <button type="button" (click)="increment()">INCREMENT</button>
+  <button type="button" (click)="decrement()">Decrement</button>
+  <button type="button" (click)="incrementByAmount()" class="border border-black">Incremnt Amount</button>
+</section>
+
 <div [ngStyle]="{ color: 'red', backgroundColor: 'yellow' }">
   One way data binding :
 </div>
@@ -179,9 +187,9 @@
 
 <table>
   <tr *ngFor="let date of joiningDates | orderby : 'asec'">
-    <td >
-      {{date}}
+    <td>
+      {{ date }}
     </td>
   </tr>
 </table>
-<app-testchild (emitter)="$event"></app-testchild>
+<app-testchild (emitter)="($event)"></app-testchild>
